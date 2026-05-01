@@ -15,14 +15,17 @@ export default function ProductDetailsPage() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔒 Auth check
-  useEffect(() => {
-    if (!isPending && !user) {
-      router.replace("/signin");
-    }
-  }, [user, isPending, router]);
+  // Auth check (FIXED)
+useEffect(() => {
+  if (isPending) return; // ⛔ wait for session
 
-  // 📦 Fetch product (only when user ready)
+  // 🔥 only redirect if user is REALLY null
+  if (user === null) {
+    router.replace("/signin");
+  }
+}, [user, isPending, router]);
+
+  // Fetch product (only when user ready)
   useEffect(() => {
     if (!id || isPending || !user) return;
 
@@ -45,7 +48,7 @@ export default function ProductDetailsPage() {
       });
   }, [id, user, isPending]);
 
-  // ⏳ Loading
+  // Loading
   if (loading || isPending) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
@@ -66,7 +69,7 @@ export default function ProductDetailsPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="grid md:grid-cols-2 gap-10 items-center bg-white p-6 rounded-3xl shadow-lg">
-        {/* 🖼 Image */}
+        {/*  Image */}
         <div className="relative w-full h-100 rounded-2xl overflow-hidden">
           <Image
             src={product.image || "/placeholder.png"}
@@ -76,7 +79,7 @@ export default function ProductDetailsPage() {
           />
         </div>
 
-        {/* 📄 Content */}
+        {/* Content */}
         <div>
           <h2 className="text-3xl font-bold text-gray-800 mb-2">
             {product.name}
@@ -100,7 +103,7 @@ export default function ProductDetailsPage() {
 
           <p className="text-sm text-gray-500 mb-6">Stock: {product.stock}</p>
 
-          {/* 🔘 Buttons */}
+          {/*  Buttons */}
           <div className="flex gap-4">
             <button className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full shadow-md hover:shadow-lg transition">
               Buy Now 🛒
