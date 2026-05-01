@@ -18,7 +18,7 @@ export function UpdateUserModal() {
 
   return (
     <Modal>
-      {/* 🔥 Trigger Button */}
+      {/* Trigger Button */}
       <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-5 py-2 flex items-center gap-2 shadow-md hover:shadow-lg transition">
         <BiEdit /> Update Profile
       </Button>
@@ -28,7 +28,7 @@ export function UpdateUserModal() {
           <Modal.Dialog className="sm:max-w-md rounded-2xl shadow-2xl">
             <Modal.CloseTrigger />
 
-            {/* 🔥 Header */}
+            {/* Header */}
             <Modal.Header className="flex items-center gap-3 border-b pb-3">
               <Modal.Icon className="bg-orange-100 text-orange-500 p-2 rounded-full">
                 <BiUser className="size-5" />
@@ -39,7 +39,7 @@ export function UpdateUserModal() {
               </Modal.Heading>
             </Modal.Header>
 
-            {/* 🔥 Body */}
+            {/* Body */}
             <Modal.Body className="p-6">
               <Surface className="bg-gray-50 rounded-xl p-4">
                 <form onSubmit={onSubmit} className="flex flex-col gap-4">
@@ -65,7 +65,7 @@ export function UpdateUserModal() {
                     />
                   </TextField>
 
-                  {/* 🔥 Footer Buttons */}
+                  {/* Footer Buttons */}
                   <Modal.Footer className="flex gap-3 mt-4">
                     <Button
                       slot="close"
