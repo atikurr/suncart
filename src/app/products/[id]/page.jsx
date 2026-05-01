@@ -15,29 +15,23 @@ export default function ProductDetailsPage() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Auth check (FIXED)
-useEffect(() => {
-  if (isPending) return; // ⛔ wait for session
-
-  // 🔥 only redirect if user is REALLY null
-  if (user === null) {
-    router.replace("/signin");
-  }
-}, [user, isPending, router]);
-
-  // Fetch product (only when user ready)
+  // ✅ Auth check (fixed)
   useEffect(() => {
-    if (!id || isPending || !user) return;
+    if (isPending) return;
+
+    // 🔥 only redirect if user is explicitly null
+    if (user === null) {
+      router.replace("/signin");
+    }
+  }, [user, isPending, router]);
+
+  // ✅ Fetch product (DON'T block by user)
+  useEffect(() => {
+    if (!id) return;
 
     fetch("/data/products.json")
       .then((res) => res.json())
       .then((data) => {
-        if (!Array.isArray(data)) {
-          setProduct(null);
-          setLoading(false);
-          return;
-        }
-
         const found = data.find((p) => String(p.id) === String(id));
         setProduct(found);
         setLoading(false);
@@ -46,13 +40,27 @@ useEffect(() => {
         setProduct(null);
         setLoading(false);
       });
-  }, [id, user, isPending]);
+  }, [id]);
 
-  // Loading
-  if (loading || isPending) {
+  // Wait for session
+  if (isPending) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
-        <p className="text-gray-500 text-lg">Loading product...</p>
+        <p>Checking session...</p>
+      </div>
+    );
+  }
+
+  //
+  if (user === null) {
+    return null;
+  }
+
+  // ⏳ Loading product
+  if (loading) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <p>Loading product...</p>
       </div>
     );
   }
@@ -69,47 +77,30 @@ useEffect(() => {
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="grid md:grid-cols-2 gap-10 items-center bg-white p-6 rounded-3xl shadow-lg">
-        {/*  Image */}
         <div className="relative w-full h-100 rounded-2xl overflow-hidden">
           <Image
             src={product.image || "/placeholder.png"}
             alt={product.name}
             fill
-            className="object-cover hover:scale-105 transition duration-300"
+            className="object-cover"
           />
         </div>
 
-        {/* Content */}
         <div>
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">
-            {product.name}
-          </h2>
-
-          <p className="text-sm text-gray-500 mb-2">
-            Brand: <span className="font-medium">{product.brand}</span>
-          </p>
-
-          <p className="text-sm text-gray-500 mb-2">
-            Category: {product.category}
-          </p>
-
-          <p className="text-yellow-500 mb-3">⭐ {product.rating}</p>
-
-          <p className="text-gray-600 mb-4">{product.description}</p>
-
-          <p className="text-2xl font-bold text-orange-500 mb-2">
+          <h2 className="text-3xl font-bold mb-2">{product.name}</h2>
+          <p className="text-sm text-gray-500">Brand: {product.brand}</p>
+          <p className="text-sm text-gray-500">Category: {product.category}</p>
+          <p className="text-yellow-500">⭐ {product.rating}</p>
+          <p className="text-gray-600 mt-3">{product.description}</p>
+          <p className="text-2xl font-bold text-orange-500 mt-2">
             ${product.price}
           </p>
 
-          <p className="text-sm text-gray-500 mb-6">Stock: {product.stock}</p>
-
-          {/*  Buttons */}
-          <div className="flex gap-4">
-            <button className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full shadow-md hover:shadow-lg transition">
-              Buy Now 🛒
+          <div className="flex gap-4 mt-5">
+            <button className="px-6 py-3 bg-orange-500 text-white rounded-full">
+              Buy Now
             </button>
-
-            <button className="px-6 py-3 border border-gray-300 rounded-full hover:bg-gray-100 transition">
+            <button className="px-6 py-3 border rounded-full">
               Add to Cart
             </button>
           </div>
