@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@import "@heroui/styles"; 
+
+
+body {
+  font-family: "Poppins", sans-serif;
+}

@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "name": "UV Protection Sunglasses",
+    "brand": "SunShade",
+    "price": 15,
+    "rating": 4.7,
+    "stock": 10,
+    "description": "Stylish UV protection sunglasses perfect for summer outings.",
+    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=800&q=80",
+    "category": "Accessories"
+  },
+  {
+    "id": 2,
+    "name": "Beach Straw Hat",
+    "brand": "SunnyStyle",
+    "price": 12,
+    "rating": 4.5,
+    "stock": 8,
+    "description": "Lightweight straw hat to protect you from the sun.",
+    "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
+    "category": "Accessories"
+  },
+  {
+    "id": 3,
+    "name": "Summer Cotton T-Shirt",
+    "brand": "CoolWear",
+    "price": 20,
+    "rating": 4.6,
+    "stock": 15,
+    "description": "Breathable cotton t-shirt for hot summer days.",
+    "image": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80",
+    "category": "Clothing"
+  },
+  {
+  "id": 4,
+  "name": "Flip Flop Sandals",
+  "brand": "WalkEasy",
+  "price": 18,
+  "rating": 4.4,
+  "stock": 20,
+  "description": "Comfortable flip flops for beach and casual wear.",
+  "image": "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=800&q=80",
+  "category": "Footwear"
+},
+  {
+  "id": 5,
+  "name": "Aloe Vera Sunscreen SPF 50",
+  "brand": "SkinCare+",
+  "price": 10,
+  "rating": 4.8,
+  "stock": 12,
+  "description": "Protect your skin with high SPF sunscreen.",
+  "image": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=800&q=80",
+  "category": "Skincare"
+},
+  {
+  "id": 6,
+  "name": "Beach Tote Bag",
+  "brand": "CarryAll",
+  "price": 22,
+  "rating": 4.5,
+  "stock": 9,
+  "description": "Spacious tote bag for all your beach essentials.",
+  "image": "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=800&q=80",
+  "category": "Accessories"
+},
+  {
+  "id": 7,
+  "name": "Cooling Water Bottle",
+  "brand": "HydroCool",
+  "price": 14,
+  "rating": 4.6,
+  "stock": 25,
+  "description": "Keep your drinks cool during hot summer days.",
+  "image": "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=800&q=80",
+  "category": "Essentials"
+},
+  {
+    "id": 8,
+    "name": "Men's Summer Shorts",
+    "brand": "UrbanFit",
+    "price": 25,
+    "rating": 4.3,
+    "stock": 14,
+    "description": "Comfortable shorts perfect for summer outings.",
+    "image": "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=800&q=80",
+    "category": "Clothing"
+  },
+  {
+  "id": 4,
+  "name": "Flip Flop Sandals",
+  "brand": "WalkEasy",
+  "price": 18,
+  "rating": 4.4,
+  "stock": 20,
+  "description": "Comfortable flip flops for beach and casual wear.",
+  "image": "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=800&q=80",
+  "category": "Footwear"
+},
+  {
+    "id": 10,
+    "name": "Portable Mini Fan",
+    "brand": "CoolBreeze",
+    "price": 16,
+    "rating": 4.5,
+    "stock": 18,
+    "description": "Handheld fan to stay cool anywhere.",
+    "image": "https://images.unsplash.com/photo-1598032895397-b9472444bf93?auto=format&fit=crop&w=800&q=80",
+    "category": "Essentials"
+  }
+]
