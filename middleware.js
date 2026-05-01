@@ -5,7 +5,7 @@ export function middleware(req) {
 
   if (req.nextUrl.pathname.startsWith("/products/")) {
     if (!isLoggedIn) {
-      return NextResponse.redirect(new URL("/login", req.url));
+      return NextResponse.redirect(new URL("/signin", req.url));
     }
   }
 
