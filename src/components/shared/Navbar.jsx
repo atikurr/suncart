@@ -5,7 +5,7 @@ import { authClient } from "@/lib/auth-client";
 import { Avatar, Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
-import toast from "react-hot-toast"; d
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { data, isPending } = authClient.useSession();
