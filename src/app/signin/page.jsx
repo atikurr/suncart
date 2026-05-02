@@ -12,7 +12,6 @@ import {
   TextField,
 } from "@heroui/react";
 import { GrGoogle } from "react-icons/gr";
-import toast from "react-hot-toast";
 
 export default function SignInPage() {
   const onSubmit = async (e) => {
@@ -26,11 +25,12 @@ export default function SignInPage() {
       password,
       callbackURL: "/",
     });
-
     if (error) {
-      toast.error(error.message || "Login failed");
+      toast.error(error.message || "Login failed ");
     } else {
-      toast.success("Login successful");
+      toast.success("Login successful", {
+        duration: 2000,
+      });
     }
 
     console.log({ data, error });
@@ -43,7 +43,7 @@ export default function SignInPage() {
       });
       toast.success("Redirecting to Google...");
     } catch (err) {
-      toast.error("Google login failed ❌");
+      toast.error("Google login failed");
     }
   };
 
@@ -70,9 +70,12 @@ export default function SignInPage() {
                 return null;
               }}
             >
-              <Label>Email</Label>
-              <Input placeholder="Enter your email" />
-              <FieldError />
+              <Label className="text-sm font-medium text-gray-700">Email</Label>
+              <Input
+                placeholder="Enter your email"
+                className="mt-1 w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 transition"
+              />
+              <FieldError className="text-xs text-red-500 mt-1" />
             </TextField>
 
             <TextField
@@ -93,37 +96,58 @@ export default function SignInPage() {
                 return null;
               }}
             >
-              <Label>Password</Label>
-              <Input placeholder="Enter your password" />
-              <Description>
+              <Label className="text-sm font-medium text-gray-700">
+                Password
+              </Label>
+              <Input
+                placeholder="Enter your password"
+                className="mt-1 w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
+              />
+              <Description className="text-xs text-gray-400 mt-1">
                 Must be at least 8 characters with 1 uppercase and 1 number
               </Description>
-              <FieldError />
+              <FieldError className="text-xs text-red-500 mt-1" />
             </TextField>
 
             <div className="flex gap-2 mt-2">
-              <Button type="submit">
-                <Check /> Sign In
+              <Button
+                type="submit"
+                className="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl py-2.5 transition-all duration-200 hover:shadow-lg hover:shadow-orange-300 flex items-center justify-center gap-2"
+              >
+                <Check />
+                Sign In
               </Button>
-              <Button type="reset" variant="secondary">
+              <Button
+                type="reset"
+                variant="secondary"
+                className="px-5 rounded-xl border border-gray-200 hover:bg-gray-50 transition"
+              >
                 Reset
               </Button>
             </div>
           </Form>
 
+          {/* Divider */}
           <div className="flex items-center gap-3 my-5">
             <div className="flex-1 h-px bg-gray-200" />
-            <p className="text-xs text-gray-400">Or</p>
+            <p className="text-center text-xs text-gray-400 font-medium">Or</p>
             <div className="flex-1 h-px bg-gray-200" />
           </div>
 
-          <Button onClick={handlGoogleSignIn}>
+          <Button
+            onClick={handlGoogleSignIn}
+            variant="outline"
+            className="w-full flex items-center justify-center gap-2 border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 font-medium rounded-xl py-3 transition-all duration-200 hover:shadow-md"
+          >
             <GrGoogle /> Sign In With Google
           </Button>
 
           <p className="text-center text-sm text-gray-500 mt-6">
             Don&apos;t have an account?{" "}
-            <a href="/signup" className="text-orange-500">
+            <a
+              href="/signup"
+              className="text-orange-500 font-semibold hover:underline"
+            >
               Sign Up
             </a>
           </p>
