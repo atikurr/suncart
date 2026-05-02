@@ -14,6 +14,7 @@ import {
 } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { GrGoogle } from "react-icons/gr";
+import toast from "react-hot-toast"; 
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -26,6 +27,8 @@ export default function SignUpPage() {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
+    const loadingToast = toast.loading("Creating account..."); 
+
     const { data, error } = await authClient.signUp.email({
       name,
       image,
@@ -34,16 +37,36 @@ export default function SignUpPage() {
       callbackURL: "/",
     });
 
-    if (!error) {
+    if (error) {
+      toast.error(error.message || "Signup failed", {
+        id: loadingToast,
+      });
+    } else {
+      toast.success("Account created successfully", {
+        id: loadingToast,
+      });
+
       router.push("/");
     }
   };
 
   const handleGoogleSignUp = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/",
-    });
+    const loadingToast = toast.loading("Redirecting...");
+
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+
+      toast.success("Redirecting to Google...", {
+        id: loadingToast,
+      });
+    } catch (err) {
+      toast.error("Google signup failed", {
+        id: loadingToast,
+      });
+    }
   };
 
   return (
