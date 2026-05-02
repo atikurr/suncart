@@ -1,4 +1,5 @@
 "use client";
+
 import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {
@@ -12,6 +13,7 @@ import {
   TextField,
 } from "@heroui/react";
 import { GrGoogle } from "react-icons/gr";
+import toast from "react-hot-toast"; // ✅ added
 
 export default function SignInPage() {
   const onSubmit = async (e) => {
@@ -20,15 +22,21 @@ export default function SignInPage() {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
+    const loadingToast = toast.loading("Signing in..."); // ✅ loading
+
     const { data, error } = await authClient.signIn.email({
       email,
       password,
       callbackURL: "/",
     });
+
     if (error) {
-      toast.error(error.message || "Login failed ");
+      toast.error(error.message || "Login failed", {
+        id: loadingToast,
+      });
     } else {
       toast.success("Login successful", {
+        id: loadingToast,
         duration: 2000,
       });
     }
@@ -37,13 +45,20 @@ export default function SignInPage() {
   };
 
   const handlGoogleSignIn = async () => {
+    const loadingToast = toast.loading("Redirecting...");
+
     try {
       await authClient.signIn.social({
         provider: "google",
       });
-      toast.success("Redirecting to Google...");
+
+      toast.success("Redirecting to Google...", {
+        id: loadingToast,
+      });
     } catch (err) {
-      toast.error("Google login failed");
+      toast.error("Google login failed", {
+        id: loadingToast,
+      });
     }
   };
 
@@ -127,7 +142,6 @@ export default function SignInPage() {
             </div>
           </Form>
 
-          {/* Divider */}
           <div className="flex items-center gap-3 my-5">
             <div className="flex-1 h-px bg-gray-200" />
             <p className="text-center text-xs text-gray-400 font-medium">Or</p>
