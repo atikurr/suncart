@@ -5,6 +5,7 @@ import { authClient } from "@/lib/auth-client";
 import { Avatar, Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
+import toast from "react-hot-toast"; d
 
 const Navbar = () => {
   const { data, isPending } = authClient.useSession();
@@ -14,7 +15,19 @@ const Navbar = () => {
   if (isPending) return null;
 
   const handleSignOut = async () => {
-    await authClient.signOut();
+    const loadingToast = toast.loading("Logging out..."); 
+
+    try {
+      await authClient.signOut();
+
+      toast.success("Logged out successfully", {
+        id: loadingToast,
+      });
+    } catch (err) {
+      toast.error("Logout failed", {
+        id: loadingToast,
+      });
+    }
   };
 
   return (

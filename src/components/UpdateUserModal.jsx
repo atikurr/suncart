@@ -3,17 +3,37 @@
 import { authClient } from "@/lib/auth-client";
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
 import { BiEdit, BiUser } from "react-icons/bi";
+import toast from "react-hot-toast"; 
 
 export function UpdateUserModal() {
   const onSubmit = async (e) => {
     e.preventDefault();
+
     const name = e.target.name.value;
     const image = e.target.image.value;
 
-    await authClient.updateUser({
-      name,
-      image,
-    });
+    const loadingToast = toast.loading("Updating profile...");
+
+    try {
+      const { error } = await authClient.updateUser({
+        name,
+        image,
+      });
+
+      if (error) {
+        toast.error(error.message || "Update failed", {
+          id: loadingToast,
+        });
+      } else {
+        toast.success("Profile updated successfully ", {
+          id: loadingToast,
+        });
+      }
+    } catch (err) {
+      toast.error("Something went wrong", {
+        id: loadingToast,
+      });
+    }
   };
 
   return (
@@ -91,4 +111,4 @@ export function UpdateUserModal() {
       </Modal.Backdrop>
     </Modal>
   );
-}
+}s

@@ -13,7 +13,7 @@ import {
   TextField,
 } from "@heroui/react";
 import { GrGoogle } from "react-icons/gr";
-import toast from "react-hot-toast"; // ✅ added
+import toast from "react-hot-toast"; 
 
 export default function SignInPage() {
   const onSubmit = async (e) => {
@@ -22,8 +22,7 @@ export default function SignInPage() {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const loadingToast = toast.loading("Signing in..."); // ✅ loading
-
+    const loadingToast = toast.loading("Signing in..."); 
     const { data, error } = await authClient.signIn.email({
       email,
       password,

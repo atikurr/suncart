@@ -59,7 +59,7 @@ export default function ProfilePage() {
     );
   }
 
-  // ✅ Profile UI
+  // Profile UI
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <Card className="max-w-md mx-auto p-8 rounded-3xl shadow-lg border border-gray-100 bg-white text-center hover:shadow-xl transition">
